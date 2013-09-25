@@ -88,7 +88,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    [[NSAlert alertWithError:error] runModal];
+    //[[NSAlert alertWithError:error] runModal];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
