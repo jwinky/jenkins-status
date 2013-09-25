@@ -10,9 +10,9 @@
 
 @interface JenkinsJob : NSObject
 
-@property(nonatomic,retain) NSString *status;
-@property(nonatomic,retain) NSString *name;
-@property(nonatomic,retain) NSString *healthImageURL;
+@property(nonatomic,strong) NSString *status;
+@property(nonatomic,strong) NSString *name;
+@property(nonatomic,strong) NSString *healthImageURL;
 
 -(void)loadDetails:(NSString *)baseURL;
 

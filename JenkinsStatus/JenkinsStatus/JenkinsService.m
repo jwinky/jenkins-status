@@ -11,8 +11,10 @@
 
 @interface JenkinsService ()
 
-@property (nonatomic,retain) NSString *baseURL;
-@property (nonatomic,retain) NSMutableData *receivedData;
+@property (nonatomic,strong) NSString *baseURL;
+@property (nonatomic,strong) NSMutableData *receivedData;
+
+@property (nonatomic,strong) NSURLConnection *connection;
 
 @end
 
@@ -23,7 +25,6 @@
     
     self = [super init];
     if (self) {
-        
         self.baseURL = url;
     }
     
@@ -45,7 +46,6 @@
         j.status = [NSString stringWithFormat:@"%@/images/48x48/%@.png",self.baseURL,[job objectForKey:@"color"]];
         [j loadDetails:self.baseURL];
         [result addObject:j];
-        [j release];
     }
     
     return result;
@@ -55,7 +55,6 @@
  	
     NSMutableData *dt = [[NSMutableData alloc] init];
  	self.receivedData = dt;
-    [dt release];
  	
     NSURLRequest *request = [[NSURLRequest alloc]
  							 initWithURL: [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/json",self.baseURL]]
@@ -63,14 +62,10 @@
  							 timeoutInterval: 10
  							 ];
     
-    NSURLConnection *connection = [[NSURLConnection alloc]
- 								   initWithRequest:request
- 								   delegate:self
- 								   startImmediately:YES];
- 	
- 	[connection release];
-    [request release];
-    
+    self.connection = [[NSURLConnection alloc]
+                       initWithRequest:request
+                       delegate:self
+                       startImmediately:YES];
 }
 
 #pragma mark NSURLConnection delegate methods
@@ -103,11 +98,5 @@
  	
 }
 
--(void)dealloc {
-    
-    [_baseURL release];
-    [_receivedData release];
-    [super dealloc];
-}
 
 @end

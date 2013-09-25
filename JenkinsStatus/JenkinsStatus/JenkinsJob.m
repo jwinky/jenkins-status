@@ -14,7 +14,8 @@
     
 }
 
-@property (nonatomic,retain) NSMutableData *receivedData;
+@property (nonatomic,strong) NSMutableData *receivedData;
+@property (nonatomic,strong) NSURLConnection *connection;
 
 @end
 
@@ -31,7 +32,6 @@
  	
     NSMutableData *dt = [[NSMutableData alloc] init];
  	self.receivedData = dt;
-    [dt release];
  	
     NSURLRequest *request = [[NSURLRequest alloc]
  							 initWithURL: [NSURL URLWithString:[NSString stringWithFormat:@"%@/job/%@/api/json",bURL,urlString]]
@@ -39,15 +39,10 @@
  							 timeoutInterval: 10
  							 ];
     
-    NSURLConnection *connection = [[NSURLConnection alloc]
- 								   initWithRequest:request
- 								   delegate:self
- 								   startImmediately:YES];
-
- 	
- 	[connection release];
-    [request release];
-    
+    self.connection = [[NSURLConnection alloc]
+                       initWithRequest:request
+                       delegate:self
+                       startImmediately:YES];
 }
 
 -(void)parseJSON {
@@ -93,16 +88,6 @@
 }
 
 
--(void)dealloc {
-    
-    [_receivedData release];
-    [_status release];
-    [_name release];
-    [_healthImageURL release];
-    
-    [super dealloc];
-    
-}
 
 
 @end

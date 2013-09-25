@@ -33,8 +33,8 @@ NSString * const kModuleName = @"com.SDWR.jenkins_status";
     NSView *containerView;
 }
 
-@property (assign) IBOutlet NSPanel *optionsPanel;
-@property (assign) IBOutlet NSTextField *jenkinsURLField;
+@property (strong) IBOutlet NSPanel *optionsPanel;
+@property (strong) IBOutlet NSTextField *jenkinsURLField;
 
 @end
 
@@ -98,14 +98,12 @@ NSString * const kModuleName = @"com.SDWR.jenkins_status";
             
             NSImageView *statusImageView = [[NSImageView alloc] initWithFrame: NSMakeRect(0,0+(dynamicStatusPadding*i),ICONSIZE,ICONSIZE)];
             statusImageView.image = statusImage;
-            [statusImage release];
             
             
             NSImage *image = [[NSImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:j.healthImageURL]]];
             
             NSImageView *bgImageView = [[NSImageView alloc] initWithFrame: NSMakeRect(STATUSPADDING,0+(dynamicStatusPadding*i),ICONSIZE,ICONSIZE)];
             bgImageView.image = image;
-            [image release];
             
             NSTextView *text = [[NSTextView alloc]initWithFrame:NSMakeRect(TEXTPADDING,0+(dynamicStatusPadding*i)+TEXTVPADDING,TEXTW,TEXTH)];
             text.font = [NSFont systemFontOfSize:20];
@@ -117,9 +115,6 @@ NSString * const kModuleName = @"com.SDWR.jenkins_status";
             [containerView addSubview:text];
             [containerView addSubview:bgImageView];
             [containerView addSubview:statusImageView];
-            [statusImageView release];
-            [bgImageView release];
-            [text release];
         }
         
         [self addSubview:containerView];
@@ -172,13 +167,6 @@ NSString * const kModuleName = @"com.SDWR.jenkins_status";
 }
 
 
--(void)dealloc {
-    
-    [jobs release];
-    [serv release];
-    
-    [super dealloc];
-}
 
 
 

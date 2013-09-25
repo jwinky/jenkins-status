@@ -13,6 +13,6 @@
 - (void)getBase;
 -(id)initWithBaseURL:(NSString *)url;
 
-@property (assign) id delegate;
+@property (strong) id delegate;
 
 @end
