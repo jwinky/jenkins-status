@@ -285,11 +285,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DSTROOT = /;
+				DSTROOT = "$(SRCROOT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JenkinsStatus/JenkinsStatus-Prefix.pch";
 				INFOPLIST_FILE = "JenkinsStatus/JenkinsStatus-Info.plist";
-				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				INSTALL_PATH = /../;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = saver;
 			};
@@ -302,11 +302,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DSTROOT = /;
+				DSTROOT = "$(SRCROOT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JenkinsStatus/JenkinsStatus-Prefix.pch";
 				INFOPLIST_FILE = "JenkinsStatus/JenkinsStatus-Info.plist";
-				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				INSTALL_PATH = /../;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = saver;
 			};
