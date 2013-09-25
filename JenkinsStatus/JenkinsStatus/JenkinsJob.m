@@ -51,10 +51,10 @@
     NSDictionary *parsedJSON = [NSJSONSerialization JSONObjectWithData:self.receivedData options:kNilOptions error:&errorInfo];
     
     
-    NSArray *jobs = [parsedJSON objectForKey:@"healthReport"];
-    NSDictionary *health = [jobs objectAtIndex:0];
+    NSArray *jobs = parsedJSON[@"healthReport"];
+    NSDictionary *health = jobs[0];
     
-    self.healthImageURL = [NSString stringWithFormat:@"%@/images/48x48/%@",bURL,[health objectForKey:@"iconUrl"]];
+    self.healthImageURL = [NSString stringWithFormat:@"%@/images/48x48/%@",bURL,health[@"iconUrl"]];
 }
 
 // TODO: remove connection code from model

@@ -37,13 +37,13 @@
     NSDictionary *parsedJSON = [NSJSONSerialization JSONObjectWithData:self.receivedData options:kNilOptions error:&errorInfo];
     
     
-    NSArray *jobs = [parsedJSON objectForKey:@"jobs"];
+    NSArray *jobs = parsedJSON[@"jobs"];
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:jobs.count];
     
     for (NSDictionary *job in jobs) {
         JenkinsJob *j = [JenkinsJob new];
-        j.name = [job objectForKey:@"name"];
-        j.status = [NSString stringWithFormat:@"%@/images/48x48/%@.png",self.baseURL,[job objectForKey:@"color"]];
+        j.name = job[@"name"];
+        j.status = [NSString stringWithFormat:@"%@/images/48x48/%@.png",self.baseURL,job[@"color"]];
         [j loadDetails:self.baseURL];
         [result addObject:j];
     }
@@ -94,7 +94,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
     [self.delegate setValue:[NSArray arrayWithArray:[self parseJSON]] forKey:@"jobs"];
-    [self.delegate performSelector:@selector(setNeedsDisplay:) withObject:[NSNumber numberWithBool:YES]];
+    [self.delegate performSelector:@selector(setNeedsDisplay:) withObject:@YES];
  	
 }
 

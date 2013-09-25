@@ -92,7 +92,7 @@ NSString * const kModuleName = @"com.SDWR.jenkins_status";
             
             int dynamicStatusPadding = jobs.count<=TIGHTPADDINGTHERESHOLD ? PADDING : PADDINGTIGHT;
             
-            JenkinsJob *j = [jobs objectAtIndex:i];
+            JenkinsJob *j = jobs[i];
             
             NSImage *statusImage = [[NSImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:j.status ]]];
             
